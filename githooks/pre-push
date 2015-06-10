@@ -1,0 +1,24 @@
+#!/bin/sh
+production_dir="production"
+bkp_dir="uploaded"
+#remote_dir="user@192.168.0.121:/path/"
+remote_dir="."
+
+echo "-------- $0: Archive --------"
+cd $production_dir
+../archive_stp_dxf_pdf_any_year.sh
+
+#back up files
+echo "-------- $0: Back Up --------"
+if [ ! -d $bkp_dir ]; then mkdir $bkp_dir; fi
+for f in *.stp *.dxf *.igs *.dwb *.bmp *.pdf~; 
+do 
+  if [ -f $f ]; then mv $f $bkp_dir; fi
+done
+
+for f in *.pdf; do cp $f $bkp_dir; done
+
+echo "-------- $0: Upload --------"
+rsync -a -f '- /*/' . $remote_dir
+
+exit 0

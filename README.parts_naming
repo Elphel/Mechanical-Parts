@@ -1,0 +1,100 @@
+part numbering system for elphel camera parts (machined and standard)
+0353-XX-YY{-ZZ}, where the first group designates camera type for which the parts were originally used
+     XX - part type,
+        YY - variant, revision,
+            ZZ (optional) - equivalents, i.e. standard parts from different manufacturers
+
+
+
+0353-00     - PCB assemblies
+0353-00-01  - 10353 rev E assembly Most individual components are not shown in the model.
+0353-00-02  - 10369 rev A assembly
+0353-00-03  - 103693 rev A assy (rev 0 with manually cut corner)
+0353-00-04  - 103691 rev A assy
+
+0353-00-06  - 10338 rev A 
+0353-00-07  - 103692 (no drawings)
+
+
+0353-01     - cable assemblies
+0353-01-01  - flex jumper, 30 conductors, 0.5mm pitch, l=30mm
+0353-01-02  - flex jumper, 10 conductors, 0.5mm pitch, l=76mm
+0353-02     - other electronic assemblies
+0353-02-01  - CF card (generic)
+
+
+Major body parts
+0353-10     - bottoms
+0353-10-01  - camera bottom, l=104.77mm
+
+0353-11     - tops
+0353-11-01  - camera top plain (no connector holes), l=104.77mm
+0353-11-02  - camera top with connector holes for the 10369, l=104.77mm
+
+0353-12     - front ends
+0353-12-01  - Sensor front end (...)
+
+0353-13     - back panels
+0353-13-01  - Back panel, "vanilla"
+0353-13-02  - Back panel, with SATA and USB
+
+0353-17     - decals/overlays
+0353-17-01  - back panel overlay, network only
+0353-17-02  - back panel overlay for 10369A (RJ45, SATA, USB)
+0353-17-03  - bottom overlay
+
+0353-18     - body parts external other
+0353-18-01  - tripod mount, 1/4-20 thread
+0353-18-02  - connector cover
+
+0353-19     - body parts internal other
+0353-19-01  - CF support
+
+
+0353-20     - custom mounting parts
+0353-20-01  - standoff, M2/M2.5, 14.5mm high, DIA 4.5mm
+
+0353-30     - insulator tubing, spacers, tapes 
+0353-30-01  - insulator tubing, l=12.5mm , ID=4.5MM (heat shrink OK)
+
+0353-60     - custom extrusions
+0353-60-01    aluminum extrusion for camera bottoms
+0353-60-02    aluminum extrusion for camera tops
+
+0353-70     - optical components
+0353-70-01  - IR cutoff filter, DIA 20.0mm, t=0.3mm
+
+
+0353-80..0353-84    - other standard parts
+
+0353-85     - threaded spacers for other than M2 and M2.5
+0353-86     - threaded spacers for M2.5
+0353-87     - threaded spacers for M2
+
+0353-88     - unthreaded spacers for other than M2 and M2.5
+0353-89     - unthreaded spacers for M2.5
+0353-90     - unthreaded spacers for M2
+0353-90-01  - spacer, l=4mm (~McMaster p/n 92510A005 - approximate to metric)
+
+0353-91     - nuts for other than M2 and M2.5
+0353-92     - nuts for M2.5
+0353-93     - nuts for M2
+
+0353-94     - washers for other than M2 and M2.5
+0353-95     - washers for M2.5
+
+0353-96     - washers for M2
+0353-96-01  - washer, stainless steel, 
+
+0353-97     - screws other than M2 and M2.5
+0353-97-01  - screw socket cap, #4-40, 0.19"long
+
+0353-98     - screws, metric, M2.5
+0353-98-01  - screw, M2.5, Socket cap, Black anodized,  l=6mm (McMaster p/n 91239A704 )
+0353-98-02  - screw, M2.5, Socket cap, flat, l=6mm (McMaster p/n 92125A084
+
+0353-99     - screws, metric, M2
+0353-99-01  - screw, M2, Socket cap, Black anodized,  l=6mm (McMaster p/n 91239A704 ) - shown as different
+0353-99-02  - screw, M2, Socket cap, Stainless steel,  l=10mm (McMaster p/n )
+0353-99-03  - screw, M2, Socket cap, Stainless steel,  l=12mm (McMaster p/n )
+0353-99-04  - screw, M2, philips, flat l=3mm                  (McMaster p/n )
