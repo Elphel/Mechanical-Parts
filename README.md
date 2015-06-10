@@ -13,6 +13,7 @@ Mechanical CAD files
 <b>NOTE: DO NOT ADD THESE FILES TO REPOSITORY</b>
 * On <i>git push</i> a hook will upload files to the server
 * The pattern for publishing on [wiki.elphel.com]:
+
 > === PARTNUMBER - DESCRIPTION ===<br/>
 > SOME OR NO INFO<br/>
 > {{Cad4a\|PARTNUMBER}}<br/>
