@@ -29,6 +29,8 @@ Mechanical CAD files
 * Upload results to a file server ([community.elphel.com])
 
 The hook runs at every <i>git push</i> even if there are no changes
+###requirements
+* imagemagick
 
 ###enable
 * Copy <i>githooks/pre-push</i> into <i>.git/hooks/</i>
