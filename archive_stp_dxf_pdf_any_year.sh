@@ -101,7 +101,8 @@ else
       filename=$(basename $f)
       name=${filename%.*}
       crop=`convert -trim -format %[fx:w+2*$b]x%[fx:h+2*$b]+%[fx:page.X-$b]+%[fx:page.Y-$b] $f info:`
-      convert $f -crop $crop "$name.jpeg"; 
+      convert $f -crop $crop "$name.jpeg";
+      convert "$name.jpeg" -resize 250 $name"_resized.jpeg"
     fi
   done
     
