@@ -94,7 +94,7 @@ else
   # Process all bmps
   # b - border size in pixels
   b=20
-  for f in *.bmp
+  for f in *.bmp *.jpg *.png
   do
     #if there are no *.bmp it still runs once?!
     if [ -f $f ]; then 
