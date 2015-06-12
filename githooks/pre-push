@@ -11,7 +11,7 @@ cd $production_dir
 #back up files
 echo "-------- $0: Back Up --------"
 if [ ! -d $bkp_dir ]; then mkdir $bkp_dir; fi
-for f in *.stp *.dxf *.igs *.dwb *.bmp *.pdf~; 
+for f in *.stp *.dxf *.igs *.dwb *.bmp *.png *.jpg *.pdf~; 
 do 
   if [ -f $f ]; then mv $f $bkp_dir; fi
 done
