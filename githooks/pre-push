@@ -19,6 +19,6 @@ done
 for f in *.pdf; do cp $f $bkp_dir; done
 
 echo "-------- $0: Upload --------"
-rsync -a -f '- /*/' . $remote_dir
+rsync --ignore-existing -a -f '- /*/' . $remote_dir
 
 exit 0
