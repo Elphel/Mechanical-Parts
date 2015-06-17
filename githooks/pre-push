@@ -1,24 +1,68 @@
-#!/bin/sh
-production_dir="production"
-bkp_dir="uploaded"
-#remote_dir="user@192.168.0.121:/path/"
-remote_dir="."
+#!/usr/bin/env python
+import subprocess, urllib2, os
 
-echo "-------- $0: Archive --------"
-cd $production_dir
-../archive_stp_dxf_pdf_any_year.sh
+remote_dir  = "."
+remote_url  = "http://community.elphel.com/files/production/"
+private_key_path = "/home/user/.ssh/id_rsa"
 
-#back up files
-echo "-------- $0: Back Up --------"
-if [ ! -d $bkp_dir ]; then mkdir $bkp_dir; fi
-for f in *.stp *.dxf *.igs *.dwb *.bmp *.png *.jpg *.pdf~; 
-do 
-  if [ -f $f ]; then mv $f $bkp_dir; fi
-done
+production_dir = "production"
+bkp_dir        = "uploaded"
+rsync          = "rsync --ignore-existing -ashvv --exclude */ --exclude README . "+remote_dir
+ssh            = ["-e","ssh -i "+private_key_path]
+rsync = rsync.split()
+rsync.extend(ssh)
 
-for f in *.pdf; do cp $f $bkp_dir; done
+#list of files - needs to be manually saved
+source_files_extensions     = [".stp",".dxf",".igs",".dwb",".bmp",".png",".jpg",".pdf~"]
 
-echo "-------- $0: Upload --------"
-rsync --ignore-existing -a -f '- /*/' . $remote_dir
+production_files_extensions = [".dwb.tar.gz",".dxf.tar.gz",".igs.tar.gz",".jpeg",".pdf",".stp.tar.gz"]
+# file extension in design/xxxx-xx/xxx.dwb
+design_files_extensions     = [".dwb"]
 
-exit 0
+#change to production_dir/
+os.chdir(os.getcwd()+"/"+production_dir)
+#archive and convert file in production_dir
+subprocess.check_output("../archive_stp_dxf_pdf_any_year.sh", stderr=subprocess.STDOUT);
+
+#analyze production files
+error_counter = 0
+
+for file in os.listdir("."):
+  if (file.endswith(".dwb.tar.gz")):
+    file_stripped=file.strip(".dwb.tar.gz")
+    #download the list of production files
+    if (urllib2.urlopen(remote_url).read().find(file)!=-1): 
+      print "ERROR("+file_stripped+"): Already in production"
+      error_counter-=1
+    else:
+      for ext in production_files_extensions:
+	if (not os.path.isfile(file_stripped+ext)):
+	  print "ERROR("+file_stripped+"): Missing production file: "+file_stripped+ext
+	  error_counter-=1
+      if (error_counter==0):
+	#move original source files to production_dir/bkp_dir
+	for ext in source_files_extensions:
+	  #move file to bkp_dir
+	  if (os.path.isfile(file_stripped+ext)): os.rename(os.getcwd()+"/"+file_stripped+ext,os.getcwd()+"/"+bkp_dir+"/"+file_stripped+ext)
+	#change .dwb to read-only but executable (as git supports only 0644 and 0755)
+	for ext in design_files_extensions:
+	  #print "Looking for "+file_stripped+ext
+	  for root,dirs,files in os.walk(os.getcwd()+"/../design"):
+	    for name in files:
+	      if (name==file_stripped+ext):
+		#git supports only 0644 and 0755
+		os.chmod(os.path.join(root, name),0555)
+		#commit change
+		subprocess.check_output(["git","commit","-am","Production"], stderr=subprocess.STDOUT);
+		break
+
+if (error_counter==0):
+  #run rsync
+  subprocess.check_output(rsync, stderr=subprocess.STDOUT)
+  #move all files from production_dir to production_dir/bkp_dir
+  for file in os.listdir("."):
+    if (os.path.isfile(file))and(file!="README"): os.rename(os.getcwd()+"/"+file,os.getcwd()+"/"+bkp_dir+"/"+file)
+
+  print "PRE-PUSH HOOK: SUCCESS"
+
+exit(error_counter)
