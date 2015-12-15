@@ -29,7 +29,9 @@ error_counter = 0
 
 for file in os.listdir("."):
   if (file.endswith(".dwb.tar.gz")):
-    file_stripped=file.strip(".dwb.tar.gz")
+    #file_stripped=file.strip(".dwb.tar.gz")
+    file_stripped=file[:-len(".dwb.tar.gz")]
+    print "Processing "+file_stripped
     #download the list of production files
     if (urllib2.urlopen(remote_url).read().find(file)!=-1): 
       print "ERROR("+file_stripped+"): Already in production"
