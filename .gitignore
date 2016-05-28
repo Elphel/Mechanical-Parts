@@ -1,2 +1,7 @@
 production/*
-local* 
+local*
+#subassemblies - should be at the top
+0393-07*
+nc393/*
+step-assy/*
+step_parts/*
