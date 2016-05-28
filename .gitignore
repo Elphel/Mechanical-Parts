@@ -1,7 +1,7 @@
 production/*
 local*
 #subassemblies - should be at the top
-0393-07*
-nc393/*
-step-assy/*
-step_parts/*
+design/0393-07*
+design/nc393/*
+design/step-assy/*
+design/step_parts/*
