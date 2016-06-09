@@ -1,2 +1,9 @@
 production/*
-local* 
+local*
+#subassemblies - should be at the top
+design/0393-07*
+design/nc393/*
+design/step_assy/*
+design/step_parts/*
+design/tmp/*
+gitlog.txt
